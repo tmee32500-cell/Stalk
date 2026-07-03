@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 
 load_dotenv(dotenv_path=".env")
 
+attempts = 0
 last_state = None
 
 TOKEN = os.getenv("DISCORD_TOKEN")
@@ -51,6 +52,7 @@ async def get_username(session):
 
 @client.event
 async def on_ready():
+    global attempts
     global last_state
     print(f"Logged in as {client.user}")
     print("ROBLOX LOOP STARTED")
@@ -59,6 +61,11 @@ async def on_ready():
 
     async with aiohttp.ClientSession() as session:
         username = await get_username(session)
+        await client.change_presence(
+            activity=discord.Game(
+                name=f"Love: {username} | Attempts: {attempts}"
+            )
+        )
 
     await channel.send(
     f"✅ Bot is now online and monitoring Roblox.\n👀 Watching: {username}"
@@ -68,8 +75,16 @@ async def on_ready():
     async with aiohttp.ClientSession() as session:
         while True:
             try:
+                attempts += 1
+                print(f"Attempt #{attempts}")
                 p = await get_presence(session)
                 state = p["userPresenceType"]
+
+                await client.change_presence(
+                    activity=discord.Game(
+                name=f"Love: {username} | Attempts: {attempts}"
+                    )
+                )
 
                 if last_state is None:
                     last_state = state
