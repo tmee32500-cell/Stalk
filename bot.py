@@ -37,6 +37,18 @@ async def get_presence(session):
         print("ROBLOX STATE:", state)
         return data["userPresences"][0]
 
+
+
+async def get_username(session):
+    url = f"https://users.roblox.com/v1/users/{USER_ID}"
+
+    async with session.get(url) as r:
+        data = await r.json()
+
+    return data["name"]
+
+
+
 @client.event
 async def on_ready():
     global last_state
@@ -44,6 +56,14 @@ async def on_ready():
     print("ROBLOX LOOP STARTED")
 
     channel = client.get_channel(CHANNEL_ID)
+
+    async with aiohttp.ClientSession() as session:
+        username = await get_username(session)
+
+    await channel.send(
+    f"✅ Bot is now online and monitoring Roblox.\n👀 Watching: {username}"
+)
+
 
     async with aiohttp.ClientSession() as session:
         while True:
