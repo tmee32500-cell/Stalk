@@ -91,13 +91,13 @@ async def on_ready():
 
                 if state != last_state:
                     if state == 0:
-                        await channel.send("🔴 @everyone ilovemycars is Offline")
+                        await channel.send("🔴 @everyone ilovemycars went Offline.")
                     elif state == 1:
-                        await channel.send("🟢 @everyone ilovemycars Online")
+                        await channel.send("🔵 @everyone ilovemycars is Online!")
                     elif state == 2:
-                        await channel.send("🎮 @everyone ilovemycars In Game")
+                        await channel.send("🟢 @everyone ilovemycars just joined a Game!")
                     elif state == 3:
-                        await channel.send("🛠 @everyone ilovemycars In Studio")
+                        await channel.send("🛠 @everyone ilovemycars is In Studio")
 
                     last_state = state
 
