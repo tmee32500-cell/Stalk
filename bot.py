@@ -104,6 +104,6 @@ async def on_ready():
             except Exception as e:
                 print("Error:", e)
 
-            await asyncio.sleep(15)
+            await asyncio.sleep(5)
 
 client.run(TOKEN)
