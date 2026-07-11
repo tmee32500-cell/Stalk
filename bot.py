@@ -96,9 +96,9 @@ async def on_ready():
                     elif state == 1:
                         play_alarm()
 
-                        for i in range(5):
+                        for i in range(15):
                             await channel.send(" @everyone 🟢 Online")
-                            await asyncio.sleep(2)
+                            await asyncio.sleep(3)
                     
                     elif state == 2:
                         await channel.send( "@everyone 🎮 In Game")
