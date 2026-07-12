@@ -2,7 +2,6 @@ import discord
 import aiohttp
 import asyncio
 import os
-import winsound
 from dotenv import load_dotenv
 
 load_dotenv(dotenv_path=".env")
@@ -10,9 +9,6 @@ load_dotenv(dotenv_path=".env")
 attempts = 0
 last_state = None
 
-def play_alarm():
-    for i in range(10):
-        winsound.Beep(2500, 1000)
 
 
 TOKEN = os.getenv("DISCORD_TOKEN")
