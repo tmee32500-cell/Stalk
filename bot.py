@@ -2,12 +2,17 @@ import discord
 import aiohttp
 import asyncio
 import os
+import winsound
 from dotenv import load_dotenv
 
 load_dotenv(dotenv_path=".env")
 
 attempts = 0
 last_state = None
+
+def play_alarm():
+    for i in range(10):
+        winsound.Beep(2500, 1000)
 
 
 TOKEN = os.getenv("DISCORD_TOKEN")
@@ -92,18 +97,18 @@ async def on_ready():
 
                 if state != last_state:
                     if state == 0:
-                        await channel.send(" @everyone 🔴 Offline")
+                        await channel.send(" 🔴@everyone ilovemycars went Offline.")
                     elif state == 1:
                         play_alarm()
 
-                        for i in range(15):
-                            await channel.send(" @everyone 🟢 Online")
-                            await asyncio.sleep(3)
+                        for i in range(5):
+                            await channel.send(" 🔵@everyone ilovemycars is Online!")
+                            await asyncio.sleep(2)
                     
                     elif state == 2:
-                        await channel.send( "@everyone 🎮 In Game")
+                        await channel.send( " 🟢@everyone ilovemycars joined a game!")
                     elif state == 3:
-                        await channel.send(" @everyone 🛠 In Studio")
+                        await channel.send(" 🛠 @everyone ilovemycars is in Studio!")
 
                     last_state = state
 
