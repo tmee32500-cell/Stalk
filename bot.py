@@ -94,19 +94,20 @@ async def on_ready():
                 if state != last_state:
                     if state == 0:
                         await channel.send(" 🔴@everyone ilovemycars went Offline.")
+                   
                     elif state == 1:
-                        play_alarm()
-
                         for i in range(5):
                             await channel.send(" 🔵@everyone ilovemycars is Online!")
                             await asyncio.sleep(2)
                     
                     elif state == 2:
                         await channel.send( " 🟢@everyone ilovemycars joined a game!")
+                  
                     elif state == 3:
                         await channel.send(" 🛠 @everyone ilovemycars is in Studio!")
 
                     last_state = state
+                    
 
             except Exception as e:
                 print("Error:", e)
